@@ -50,7 +50,7 @@ def playerChoice(litera)
 	if (litera=="s")
 		ok=1
 		system ("cls")
-		startGame(get_board($boardWidth,$boardHeight),0.to_i)
+		startGame(get_board($boardWidth,$boardHeight),"0".to_i)
 	end
 	if(litera=="c")
 		ok=2
@@ -118,8 +118,16 @@ splsh.splash
 gets()
 end
 
-def percentageDone(board, color)
-
+def percentageDone(board)
+	counter=0
+	(0...$boardWidth).each do |i|
+  	(0...$boardHeight).each do |j|
+  		if(board[i][j]==board[0][0])
+  			counter=counter+1
+  		end
+  	end
+  end
+  return (100*counter)/($boardWidth*$boardHeight)
 end
 
 def startGame(board,turns)
@@ -133,7 +141,7 @@ def startGame(board,turns)
   puts ""
   #todos
   puts "Number of turns: #{turns}"
-  puts "Current completion: X%"
+  puts "Current completion: #{percentageDone(board)}%"
   puts "Choose a colour:" 
   print "███".colorize(:red) 
   print "███".colorize(:blue) 
