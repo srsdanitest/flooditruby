@@ -33,6 +33,52 @@ def displayScore
 		puts "Best Game: #{$scorr} turns"
 	end
 end
+def playerChoice(litera)
+	ok=0
+	if (litera=="s")
+		ok=1
+		startGame()
+	end
+	if(litera=="c")
+		ok=2
+		changeSize()
+	end
+	if(litera=="q")
+		ok=3
+		exit 1
+	end
+	if(ok==0)
+		puts "you didnt enter a valid choice"
+		gets()
+		mainMenu()
+	end
+end
+def startGame
+
+end
+def itsOKquestion(test)
+if(test.to_i<4||test.to_i>30)
+	return false
+end
+return true
+end
+def changeSize
+print "Width (currently #{$boardWidth})? "
+test=gets.chomp
+if(itsOKquestion(test))
+	$boardWidth=test
+end
+puts ""
+print "height (currently #{$boardHeight})? "
+test=gets.chomp
+if(itsOKquestion(test))
+	$boardHeight=test
+end
+puts ""
+gets()
+mainMenu()
+end
+
 def mainMenu
 	system ("cls")
 	puts "Main menu:"
@@ -40,7 +86,9 @@ def mainMenu
 	puts "c = Change size"
 	puts "q = Quit"
 	displayScore()
-	
+	puts "Please Enter your choice: "
+	amAles=gets.chomp
+	playerChoice(amAles)
 end
 
 def splashScreen
@@ -54,7 +102,6 @@ splsh.write_header("Flood it", "Anghel Daniel", "1.0.0")
 splsh.splash
 gets()
 end
-
 
 splashScreen()
 
