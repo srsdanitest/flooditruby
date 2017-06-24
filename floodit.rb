@@ -23,3 +23,12 @@ end
 
 # TODO: Implement everything else as described in the
 #       assignment brief.
+
+splsh = ConsoleSplash.new(20,60)
+splsh.write_center(-3, "Apasa <enter> pentru a continua")
+splsh.write_horizontal_pattern("*",{:fg=>:white, :bg=>:green})
+splsh.write_vertical_pattern("*",{:fg=>:white, :bg=>:red})
+'clear'
+splsh.write_header("Flood it", "Anghel Daniel", "1.0.0")
+splsh.splash
+gets()
