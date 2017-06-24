@@ -1,4 +1,7 @@
 
+require 'console_splash'
+require 'colorize'
+
 def get_board(width, height)
   # TODO: Implement this method
   #
