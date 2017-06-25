@@ -31,17 +31,18 @@ end
 
 # TODO: Implement everything else as described in the
 #       assignment brief.
-$scorr=File.read("savegame.txt").to_i
+
 #read the best score from savegame.txt as an integer.
 $boardHeight=9
 $boardWidth=14
 #height and width as global variables
 def displayScore
+	scorr=File.read("savegame.txt").to_i
 	#use this to show the best score in main menu. 
-	if($scorr==0)
+	if(scorr==0)
 		puts "No games Played yet."
 	else
-		puts "Best Game: #{$scorr} turns"
+		puts "Best Game: #{scorr} turns"
 	end
 end
 def playerChoice(litera)
@@ -176,6 +177,10 @@ end
 def gameWon(turns)
 	puts "You won after #{turns} turns"
 	puts "Do you want to play another game? Y/N"
+	scorr=File.read("savegame.txt").to_i
+	if(turns<scorr||scorr==0)
+		File.write('savegame.txt', turns)
+	end
 	amAles=gets.chomp
 	if(amAles=="Y")
 		playerChoice("s")
