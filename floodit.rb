@@ -176,20 +176,20 @@ def youseemconfused()
 end
 def gameWon(turns)
 	puts "You won after #{turns} turns"
-	puts "Do you want to play another game? Y/N"
+	puts "Do you want to play another game? y/n"
 	scorr=File.read("savegame.txt").to_i
 	if(turns<scorr||scorr==0)
 		File.write('savegame.txt', turns)
 	end
 	amAles=gets.chomp
-	if(amAles=="Y")
+	if(amAles=="y")
 		playerChoice("s")
 	end
-	if(amAles=="N")
+	if(amAles=="n")
 		mainMenu()
 	end
 	youseemconfused()
-	gameWon()
+	gameWon(turns)
 end
 def ceAmAles(amAles)
 colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
@@ -218,22 +218,18 @@ def changeBoard(board,amAles,xa,ya,pozZeroo)
 	board[0][0]=":tobechanged"
 	pozZero=ceAmAles(amAles)
 	if(board[xa+1][ya]==pozZeroo&&xa+1<$boardHeight)
-		puts "hereee"
 		board[xa+1][ya]=":tobechanged"
 		board=changeBoard(board,amAles,xa+1,ya,pozZeroo)
 	end
 	if(board[xa][ya+1]==pozZeroo&&ya+1<$boardWidth)
-		puts "hereee1"
 		board[xa][ya+1]=":tobechanged"
 		board=changeBoard(board,amAles,xa,ya+1,pozZeroo)
 	end
 	if(board[xa][ya-1]==pozZeroo&&ya-1>=0)
-		puts "hereee2"
 		board[xa][ya-1]=":tobechanged"
 		board=changeBoard(board,amAles,xa,ya-1,pozZeroo)
 	end
 	if(board[xa-1][ya]==pozZeroo&&xa-1>=0)
-		puts "hereee3"
 		board[xa-1][ya]=":tobechanged"
 		board=changeBoard(board,amAles,xa-1,ya,pozZeroo)
 	end
