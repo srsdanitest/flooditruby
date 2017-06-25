@@ -157,7 +157,7 @@ def startGame(board,turns)
   if(amAles=="q")
   	mainMenu()
   end
-  board=changeBoard(board,amAles,"0".to_i,"0".to_i,board[0][0])
+  board=changeBoard(board,"0".to_i,"0".to_i,board[0][0])
   (0...$boardHeight).each do |i|
   	(0...$boardWidth).each do |j|
   		if(board[i][j]==":tobechanged")
@@ -213,25 +213,24 @@ if(amAles=="m")
 end
 end
 
-def changeBoard(board,amAles,xa,ya,pozZeroo)
+def changeBoard(board,xa,ya,pozZeroo)
 
 	board[0][0]=":tobechanged"
-	pozZero=ceAmAles(amAles)
 	if(board[xa+1][ya]==pozZeroo&&xa+1<$boardHeight)
 		board[xa+1][ya]=":tobechanged"
-		board=changeBoard(board,amAles,xa+1,ya,pozZeroo)
+		board=changeBoard(board,xa+1,ya,pozZeroo)
 	end
 	if(board[xa][ya+1]==pozZeroo&&ya+1<$boardWidth)
 		board[xa][ya+1]=":tobechanged"
-		board=changeBoard(board,amAles,xa,ya+1,pozZeroo)
+		board=changeBoard(board,xa,ya+1,pozZeroo)
 	end
 	if(board[xa][ya-1]==pozZeroo&&ya-1>=0)
 		board[xa][ya-1]=":tobechanged"
-		board=changeBoard(board,amAles,xa,ya-1,pozZeroo)
+		board=changeBoard(board,xa,ya-1,pozZeroo)
 	end
 	if(board[xa-1][ya]==pozZeroo&&xa-1>=0)
 		board[xa-1][ya]=":tobechanged"
-		board=changeBoard(board,amAles,xa-1,ya,pozZeroo)
+		board=changeBoard(board,xa-1,ya,pozZeroo)
 	end
 	return board
 end
