@@ -21,8 +21,8 @@ def get_board(width, height)
   # of your implementation.
   colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
   data = Array.new(width) { Array.new(height)}
-  (0...width).each do |i|
-  	(0...height).each do |j|
+  (0...height).each do |i|
+  	(0...width).each do |j|
   		data[i][j]=colorss.sample
   	end
   end
@@ -120,8 +120,8 @@ end
 
 def percentageDone(board)
 	counter=0
-	(0...$boardWidth).each do |i|
-  	(0...$boardHeight).each do |j|
+	(0...$boardHeight).each do |i|
+  	(0...$boardWidth).each do |j|
   		if(board[i][j]==board[0][0])
   			counter=counter+1
   		end
@@ -132,9 +132,9 @@ end
 
 def startGame(board,turns)
 	system ("cls")
-	(0...$boardWidth).each do |i|
+	(0...$boardHeight).each do |i|
 		puts " "
-  	(0...$boardHeight).each do |j|
+  	(0...$boardWidth).each do |j|
   		print "██".colorize(board[i][j])
   	end
   end
@@ -149,13 +149,74 @@ def startGame(board,turns)
   print "███".colorize(:yellow) 
   print "███".colorize(:cyan) 
   print "███".colorize(:magenta) 
+  print "   quit".colorize(:red)
   puts ""
-  puts " r  b  g  y  c  m"
-  #rgbymc q
-  gets()
+  puts " r  b  g  y  c  m     q"
+  amAles=gets.chomp
+  if(amAles=="q")
+  	mainMenu()
+  end
+  board=changeBoard(board,amAles,"0".to_i,"0".to_i,board[0][0])
+  (0...$boardHeight).each do |i|
+  	(0...$boardWidth).each do |j|
+  		if(board[i][j]==":tobechanged")
+  			board[i][j]=ceAmAles(amAles)
+  		end
+  	end
+  end
+
+  turns=turns+1
   startGame(board,turns)
 end
 
+def ceAmAles(amAles)
+colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
+if(amAles=="r")
+	return colorss[0]
+end
+if(amAles=="b")
+	return colorss[1]
+end
+if(amAles=="g")
+	return colorss[2]
+end
+if(amAles=="y")
+	return colorss[3]
+end
+if(amAles=="c")
+	return colorss[4]
+end
+if(amAles=="m")
+	return colorss[5]
+end
+end
+
+def changeBoard(board,amAles,xa,ya,pozZeroo)
+
+	board[0][0]=":tobechanged"
+	pozZero=ceAmAles(amAles)
+	if(board[xa+1][ya]==pozZeroo&&xa+1<$boardHeight)
+		puts "hereee"
+		board[xa+1][ya]=":tobechanged"
+		board=changeBoard(board,amAles,xa+1,ya,pozZeroo)
+	end
+	if(board[xa][ya+1]==pozZeroo&&ya+1<$boardWidth)
+		puts "hereee1"
+		board[xa][ya+1]=":tobechanged"
+		board=changeBoard(board,amAles,xa,ya+1,pozZeroo)
+	end
+	if(board[xa][ya-1]==pozZeroo&&ya-1>=0)
+		puts "hereee2"
+		board[xa][ya-1]=":tobechanged"
+		board=changeBoard(board,amAles,xa,ya-1,pozZeroo)
+	end
+	if(board[xa-1][ya]==pozZeroo&&xa-1>=0)
+		puts "hereee3"
+		board[xa-1][ya]=":tobechanged"
+		board=changeBoard(board,amAles,xa-1,ya,pozZeroo)
+	end
+	return board
+end
 #start from splashscreen, then the main menu
 String.disable_colorization = false
 splashScreen()
