@@ -3,22 +3,7 @@ require 'console_splash'
 require 'colorize'
 
 def get_board(width, height)
-  # TODO: Implement this method
-  #
-  # This method should return a two-dimensional array.
-  # Each element of the array should be one of the
-  # following values (These are "symbols", you can use
-  # them like constant values):
-  # :red
-  # :blue
-  # :green
-  # :yellow
-  # :cyan
-  # :magenta
-  #
-  # It is important that this method is used because
-  # this will be used for checking the functionality
-  # of your implementation.
+  #generate random value for board and return the board after everything is done.
   colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
   data = Array.new(width) { Array.new(height)}
   (0...height).each do |i|
@@ -28,10 +13,6 @@ def get_board(width, height)
   end
   return data
 end
-
-# TODO: Implement everything else as described in the
-#       assignment brief.
-
 #read the best score from savegame.txt as an integer.
 $boardHeight=9
 $boardWidth=14
@@ -106,7 +87,6 @@ def mainMenu
 	amAles=gets.chomp
 	playerChoice(amAles)
 end
-
 def splashScreen
 system ("cls")
 splsh = ConsoleSplash.new(20,60)
@@ -118,7 +98,6 @@ splsh.write_header("Flood it", "Anghel Daniel", "1.0.0")
 splsh.splash
 gets()
 end
-
 def percentageDone(board)
 	counter=0
 	(0...$boardHeight).each do |i|
@@ -130,7 +109,6 @@ def percentageDone(board)
   end
   return (100*counter)/($boardWidth*$boardHeight)
 end
-
 def startGame(board,turns)
 	system ("cls")
 	(0...$boardHeight).each do |i|
@@ -140,7 +118,6 @@ def startGame(board,turns)
   	end
   end
   puts ""
-  #todos
   puts "Number of turns: #{turns}"
   puts "Current completion: #{percentageDone(board)}%"
   puts "Choose a colour:" 
@@ -211,8 +188,9 @@ end
 if(amAles=="m")
 	return colorss[5]
 end
+youseemconfused()
+gets()
 end
-
 def changeBoard(board,xa,ya,pozZeroo)
 
 	board[0][0]=":tobechanged"
