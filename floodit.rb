@@ -1,7 +1,8 @@
 #require to init splash screen and colorize for board colors
 require 'console_splash'
 require 'colorize'
-
+$boardHeight=9
+$boardWidth=14
 def get_board(width, height)
   #generate random value for board and return the board after everything is done.
   colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
@@ -14,8 +15,6 @@ def get_board(width, height)
   return data
 end
 #read the best score from savegame.txt as an integer.
-$boardHeight=9
-$boardWidth=14
 #height and width as global variables
 def displayScore
 	scorr=File.read("savegame.txt").to_i
@@ -63,13 +62,13 @@ def changeSize
 print "Width (currently #{$boardWidth})? "
 test=gets.chomp
 if(itsOKquestion(test))
-	$boardWidth=test
+	$boardWidth=test.to_i
 end
 puts ""
 print "height (currently #{$boardHeight})? "
 test=gets.chomp
 if(itsOKquestion(test))
-	$boardHeight=test
+	$boardHeight=test.to_i
 end
 puts ""
 gets()
