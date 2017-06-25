@@ -61,7 +61,7 @@ def playerChoice(litera)
 		exit 1
 	end
 	if(ok==0)
-		puts "you didnt enter a valid choice"
+		youseemconfused()
 		#just to be sure
 		gets()
 		mainMenu()
@@ -164,11 +164,28 @@ def startGame(board,turns)
   		end
   	end
   end
-
+  if(percentageDone(board)==100)
+  	gameWon(turns+1)
+  end
   turns=turns+1
   startGame(board,turns)
 end
-
+def youseemconfused()
+	puts "you seem to be confused. what's wrong with you?"
+end
+def gameWon(turns)
+	puts "You won after #{turns} turns"
+	puts "Do you want to play another game? Y/N"
+	amAles=gets.chomp
+	if(amAles=="Y")
+		playerChoice("s")
+	end
+	if(amAles=="N")
+		mainMenu()
+	end
+	youseemconfused()
+	gameWon()
+end
 def ceAmAles(amAles)
 colorss=[:red,:blue,:green,:yellow,:cyan,:magenta]
 if(amAles=="r")
